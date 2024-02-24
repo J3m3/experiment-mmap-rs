@@ -1,8 +1,9 @@
 use memmap2::{MmapMut, MmapOptions};
-use std::{fs, io::Read, mem};
+use std::{env, fs, io::Read, mem};
 
 fn main() {
-    let file_path = "./example/hello.bin";
+    let args: Vec<String> = env::args().collect();
+    let file_path = &args[1];
     let mut code = fs::File::open(file_path).expect("failed to open specified file");
 
     let mmap_file = unsafe {
